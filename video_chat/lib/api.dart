@@ -1,0 +1,13 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+String token = "<API TOKEN/>";
+
+Future<String> createMeeting() async {
+  final http.Response httpResponse = await http.post(
+    Uri.parse("https://api.videosdk.live/v2/rooms"),
+    headers: {'Authorization': token},
+  );
+
+  return json.decode(httpResponse.body)['roomId'];
+}
